@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Canvas Roulette</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+<script src="https://unpkg.com/web3modal@1.9.8/dist/index.js"></script>   
+ <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+<body>
+  <h1>WarpCast Roulette</h1>
+   <button id="connect-wallet">Connect Wallet</button>
+<div id="wallet-status" style="margin-top: 10px; font-weight: bold;"></div>
+  <div id="result-message" style="margin-top: 10px; font-size: 18px; font-weight: bold;"></div>
+  <div id="history"></div>
+ <div id="result-message" style="margin-top: 10px; font-size: 18px; font-weight: bold;"></div>
+  <canvas id="roulette" width="400" height="400"></canvas><br />
+ 
+   <div id="chip-selector">
+  <button data-value="0.001" data-label="0.001 ETH">0.001 ETH</button>
+  <button data-value="0.01" data-label="0.05 ETH">0.01 ETH</button>
+  <button data-value="0.1" data-label="0.1 ETH">0.1 ETH</button>
+  <button data-value="0.2" data-label="0.2 ETH">0.2 ETH</button>
+</div>
+
+  <div id="betting-table">
+    <div class="table-container">
+      <div class="zero-column">
+        <div class="bet-cell green" style="grid-row: span 3;">0</div>
+      </div>
+      <div class="main-grid">
+        <div class="number-label-wrapper">
+          <div class="number-grid"></div>
+          <div class="side-labels">
+            <div class="side-label">1st</div>
+            <div class="side-label">2nd</div>
+            <div class="side-label">3rd</div>
+          </div>
+        </div>
+        <div class="label-row">
+          <div class="label">1st 12</div>
+          <div class="label">2nd 12</div>
+          <div class="label">3rd 12</div>
+        </div>
+        <div class="label-row">
+          <div class="label" style="background:#264653;">EVEN</div>
+          <div class="label" style="background:#e76f51;">ODD</div>
+          <div class="label" style="background:#c1121f;">RED</div>
+          <div class="label" style="background:#000;">BLACK</div>
+          <div class="label" style="background:#2a9d8f;">1-18</div>
+          <div class="label" style="background:#e9c46a;">19-36</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
