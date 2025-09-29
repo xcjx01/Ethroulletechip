@@ -1,0 +1,269 @@
+body {
+  background: #ccc;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+canvas {
+  background: #222;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  background: #ff4747;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#history {
+  margin: 10px auto;
+}
+
+.history-item {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  margin: 2px;
+  border-radius: 50%;
+  font-weight: bold;
+  color: white;
+}
+
+#betting-table {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+  flex-direction: column;
+  align-items: center;
+  width: 95%;
+  max-width: 1200px;
+}
+
+.table-container {
+  display: flex;
+  width: 100%;
+}
+
+.zero-column {
+  display: flex;
+  flex-direction: column;
+  margin-right: 8px;
+}
+
+.zero-column .bet-cell {
+  flex: 1;
+  height: 100%;
+  width: 20px;
+}
+
+.main-grid {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+}
+
+.number-label-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.number-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 4px;
+  width: 100%;
+}
+
+.side-labels {
+  display: flex;
+  flex-direction: column;
+  margin-left: 4px;
+  gap: 4px;
+}
+
+.side-label {
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 0;
+  border-radius: 4px;
+  padding: 4px;
+  flex: 1;
+  cursor: pointer;
+}
+
+/* Warna berbeda untuk ROW 1, 2, 3 */
+.side-label:nth-child(1) {
+  background-color: #2a9d8f;
+}
+
+.side-label:nth-child(2) {
+  background-color: #e9c46a;
+}
+
+.side-label:nth-child(3) {
+  background-color: #f4a261;
+}
+
+/* Efek saat dipilih */
+.side-label.selected {
+  outline: 3px solid yellow;
+}
+
+.label-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 4px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.label-row .label:nth-child(1) { background-color: #2a9d8f; }
+.label-row .label:nth-child(2) { background-color: #e9c46a; }
+.label-row .label:nth-child(3) { background-color: #f4a261; }
+
+.label {
+  background: #555;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+  border-radius: 4px;
+  flex: 1;
+  cursor: pointer;
+}
+
+.bet-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+  border-radius: 4px;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+}
+
+.green { background: green; }
+.red { background: red; }
+.black { background: black; }
+
+#chip-selector {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#chip-selector button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: relative;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 3px white, 0 2px 6px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#chip-selector button:hover {
+  transform: scale(1.1);
+}
+
+#chip-selector button.active {
+  outline: 3px solid yellow;
+}
+
+/* Center label */
+#chip-selector button::after {
+  content: attr(data-label);
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: white;
+  color: black;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px black;
+  z-index: 2;
+}
+
+/* White stripe pattern around edge */
+#chip-selector button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-image: repeating-conic-gradient(
+    white 0deg 10deg,
+    transparent 10deg 20deg
+  );
+  z-index: 1;
+  opacity: 0.25;
+}
+
+/* Warna chip */
+#chip-selector button[data-value="1"] {
+  background-color: yellow;
+  color: black;
+}
+#chip-selector button[data-value="5"] {
+  background-color: red;
+}
+#chip-selector button[data-value="25"] {
+  background-color: green;
+}
+#chip-selector button[data-value="100"] {
+  background-color: black;
+}
+
+.bet-cell.selected,
+.label.selected {
+  outline: 3px solid yellow;
+}
+
+@media (max-width: 600px) {
+  .label-row .label {
+    font-size: 12px;
+  }
+}
+
+#result-message {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#result-message.show {
+  opacity: 1;
+}
